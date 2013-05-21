@@ -47,11 +47,13 @@ export PATH=$FIXED_HOME/ghc/bin:$FIXED_HOME/.cabal/bin$PATH
 echo "-----> Updating Cabal"
 cabal update
 
-echo "-----> Installing libraries manualy"
-cd $BUILD_DIR
+echo "-----> Installing libraries manually"
+cd $FIXED_HOME
 git clone git://github.com/mightybyte/snaplet-postgresql-simple.git
 cd snaplet-postgresql-simple
 cabal install -j5 --disable-library-profiling --disable-executable-profiling --disable-shared
+cd $FIXED_HOME
+rm -rf snaplet-postgresql-simple
 
 echo "-----> Release the hounds! Installing application"
 cd $BUILD_DIR
